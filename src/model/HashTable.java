@@ -18,8 +18,8 @@ public class HashTable<K,V> implements Table<K,V> {
 	 * @param capacity
 	 * @param numNodes
 	 */
-	public HashTable(int capacity) {
-		this.capacity = capacity;
+	public HashTable() {
+		capacity = 10;
 		nodes = new ArrayList<>();
 		
 		for (int i = 0; i < capacity; i++) {
@@ -58,23 +58,37 @@ public class HashTable<K,V> implements Table<K,V> {
 			if(nodes.get(index)!=null) {
 				found = true;
 				nodes.add(index, new HashNode<K, V>(key, value));
+				numNodes++;
 			}
 			
 			counter++;
+			
+			if(counter==capacity && !found) {
+				capacity*=2;
+				
+				for (int i = counter; i < capacity; i++) {
+					nodes.add(null);
+				}
+			}
 		}
 		
 	}
 
 	@Override
 	public boolean containsKey(K key) {
-
-		return false;
+		int index = getIndex(key, 0);
+		boolean contains = false;	
+			if(nodes.get(index)!=null) {
+				contains = true;
+			}
+				
+		return contains;
 	}
 
 	@Override
 	public int size() {
 
-		return 0;
+		return numNodes;
 	}
 	
 	
