@@ -1,0 +1,105 @@
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HashTable<K,V> implements Table<K,V> {
+	
+	private List<HashNode<K,V>> nodes;
+	
+	private int capacity; 
+	  
+	private int numNodes;
+	
+	
+	
+	/**
+	 * @param nodes
+	 * @param capacity
+	 * @param numNodes
+	 */
+	public HashTable(int capacity) {
+		this.capacity = capacity;
+		nodes = new ArrayList<>();
+		
+		for (int i = 0; i < capacity; i++) {
+			nodes.add(null);
+		}
+	}
+
+	@Override
+	public V get(K key) {
+		
+		V value = null;
+		int counter = 0;
+		boolean found = false;
+		
+		while( !found && counter<capacity) {
+			int index = getIndex(key, counter);
+			
+			if(nodes.get(index)!= null && nodes.get(index).getKey() == key) {
+				found = true;
+				value = nodes.get(index).getValue();
+			}
+			
+			counter++;
+		}
+			return value;
+	}
+
+	@Override
+	public void add(K key, V value) {
+		
+		boolean found = false;
+		int counter = 0;
+		while( !found && counter<capacity) {
+			int index = getIndex(key, counter);
+			
+			if(nodes.get(index)!=null) {
+				found = true;
+				nodes.add(index, new HashNode<K, V>(key, value));
+			}
+			
+			counter++;
+		}
+		
+	}
+
+	@Override
+	public boolean containsKey(K key) {
+
+		return false;
+	}
+
+	@Override
+	public int size() {
+
+		return 0;
+	}
+	
+	
+	private int getIndex(K key, int counter) {
+		int index = 0;
+		
+		int hashCode = key.hashCode();
+		double A = (Math.sqrt(5) - 1 )/ 2;
+		int h1 = (int) Math.floor(capacity*(A*hashCode% 1));
+		
+		int h2 = hashCode % capacity;
+		
+		index = (h1 + h2*counter)%capacity;
+		
+		return index;
+	}
+
+	
+	
+	private int functionTwo(K key) {
+	
+		int hashCode = key.hashCode();
+		int index = hashCode % capacity; 
+		
+		
+		return index;
+	}
+}
