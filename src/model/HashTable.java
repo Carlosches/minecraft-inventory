@@ -105,14 +105,4 @@ public class HashTable<K,V> implements Table<K,V> {
 		return index;
 	}
 
-	
-	
-	private int functionTwo(K key) {
-	
-		int hashCode = key.hashCode();
-		int index = hashCode % capacity; 
-		
-		
-		return index;
-	}
 }
