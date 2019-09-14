@@ -42,7 +42,11 @@ public class Block {
 		this.image = image;
 		this.type = type;
 	}
-	
-	
+	/**
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
 	
 }

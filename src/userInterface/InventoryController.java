@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,6 +22,8 @@ import model.Slot;
 public class InventoryController {
 
 	private Inventory minecraftInventory;
+	
+	private VBox[][] inventoryMirror;
 	
     @FXML
     private GridPane inventory;
@@ -43,33 +46,25 @@ public class InventoryController {
     			, Block.GRAVEL, Block.ANDESITE, Block.DIRT, Block.SAND, Block.WOODPLANKS, Block.OBSIDIAN
     			, Block.BRICK, Block.GRANITE, Block.DIORITE, Block.TNT, Block.IRON_ORE, Block.GOLD_ORE);
     	itemSelector.setItems(o);
-    	/*for (int i = 0; i < 3; i++) {
+    	inventoryMirror = new VBox[3][9];
+    	for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				ImageView img = new ImageView();
-				img.setImage(new Image(Block.DIRTI));
 				img.setFitWidth(91);
 				img.setFitHeight(48);
-				Label l = new Label("64");
+				Label l = new Label();
 				l.setAlignment(Pos.CENTER_RIGHT);
 				l.setPrefWidth(90);
 				l.setPrefHeight(21);
 				VBox v = new VBox();
-				v.setOnDragDetected(new EventHandler<MouseEvent>() {
-
-					@Override
-					public void handle(MouseEvent m) {
-						
-					}
-					
-				});
 				v.setPrefWidth(100);
 				v.setPrefHeight(200);
 				v.getChildren().add(img);
 				v.getChildren().add(l);
 				inventory.add(v, j, i);
-				
+				inventoryMirror[i][j] = v;
 			}
-		}*/
+		}
     	minecraftInventory = new Inventory();
     }
     
@@ -84,7 +79,18 @@ public class InventoryController {
     			}
     			if(a >= 0 && a <= 64) {
     				if(minecraftInventory.addBlock(itemSelector.getValue(), a)) {
-    					showInventory();
+    					for (int i = 0; i < 3; i++) {
+    						for (int j = 0; j < 9; j++) {
+    							Slot current = minecraftInventory.getMatrix()[i][j];
+    							if(current!=null) {
+    								VBox v = inventoryMirror[i][j];
+    								ImageView img = (ImageView) v.getChildren().get(0);
+    								Label l = (Label) v.getChildren().get(1);
+    								l.setText("" + current.getQuantity());
+    								//img.setImage(new Image(current.getBlock().getImage()));
+    							}
+    						}
+    					}
     				}else {
     					
     				}
@@ -107,43 +113,5 @@ public class InventoryController {
     void clearInventoryButton(ActionEvent event) {
 
     }
-    
-    
-    void showInventory() {
-    	inventory.getChildren().clear();
-    	for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 9; j++) {
-				Slot current = minecraftInventory.getMatrix()[i][j];
-				/*ImageView img = new ImageView();
-				img.setImage(new Image(Block.DIRTI));
-				img.setFitWidth(91);
-				img.setFitHeight(48);
-				*
-				VBox v = new VBox();
-				v.setOnDragDetected(new EventHandler<MouseEvent>() {
 
-					@Override
-					public void handle(MouseEvent m) {
-						
-					}
-					
-				});
-				
-				v.setPrefWidth(100);
-				v.setPrefHeight(200);
-				//v.getChildren().add(img);*/
-				if(current!=null) {
-					Label l = new Label(""+current.getQuantity());
-					l.setAlignment(Pos.CENTER_RIGHT);
-					l.setPrefWidth(90);
-					l.setPrefHeight(21);
-					//v.getChildren().add(l);
-					inventory.add(l, j, i);
-					
-					
-				}else
-					inventory.add(new Label(""), j, i);
-			}
-		}
-    }
 }
