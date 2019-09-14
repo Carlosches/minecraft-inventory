@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import model.Block;
 import model.Inventory;
+import model.Slot;
 
 public class InventoryController {
 
@@ -42,7 +43,7 @@ public class InventoryController {
     			, Block.GRAVEL, Block.ANDESITE, Block.DIRT, Block.SAND, Block.WOODPLANKS, Block.OBSIDIAN
     			, Block.BRICK, Block.GRANITE, Block.DIORITE, Block.TNT, Block.IRON_ORE, Block.GOLD_ORE);
     	itemSelector.setItems(o);
-    	for (int i = 0; i < 3; i++) {
+    	/*for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				ImageView img = new ImageView();
 				img.setImage(new Image(Block.DIRTI));
@@ -68,7 +69,7 @@ public class InventoryController {
 				inventory.add(v, j, i);
 				
 			}
-		}
+		}*/
     	minecraftInventory = new Inventory();
     }
     
@@ -83,7 +84,7 @@ public class InventoryController {
     			}
     			if(a >= 0 && a <= 64) {
     				if(minecraftInventory.addBlock(itemSelector.getValue(), a)) {
-    					
+    					showInventory();
     				}else {
     					
     				}
@@ -106,5 +107,43 @@ public class InventoryController {
     void clearInventoryButton(ActionEvent event) {
 
     }
+    
+    
+    void showInventory() {
+    	inventory.getChildren().clear();
+    	for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 9; j++) {
+				Slot current = minecraftInventory.getMatrix()[i][j];
+				/*ImageView img = new ImageView();
+				img.setImage(new Image(Block.DIRTI));
+				img.setFitWidth(91);
+				img.setFitHeight(48);
+				*
+				VBox v = new VBox();
+				v.setOnDragDetected(new EventHandler<MouseEvent>() {
 
+					@Override
+					public void handle(MouseEvent m) {
+						
+					}
+					
+				});
+				
+				v.setPrefWidth(100);
+				v.setPrefHeight(200);
+				//v.getChildren().add(img);*/
+				if(current!=null) {
+					Label l = new Label(""+current.getQuantity());
+					l.setAlignment(Pos.CENTER_RIGHT);
+					l.setPrefWidth(90);
+					l.setPrefHeight(21);
+					//v.getChildren().add(l);
+					inventory.add(l, j, i);
+					
+					
+				}else
+					inventory.add(new Label(""), j, i);
+			}
+		}
+    }
 }

@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class Inventory {
 	
@@ -8,6 +10,9 @@ public class Inventory {
 	public static final int COLUMNS = 9;
 	
 	private Slot[][] matrix;
+	
+	int nextEmptySlotRow;
+	int nextEmptySlotColumn;
 	
 	private Table<String, List<Slot>> inventoryTable;
 	
@@ -19,12 +24,61 @@ public class Inventory {
 	
 	
 	public boolean addBlock(String type, int quantity){
-		boolean possible = false;
-		
-		
-		
-		
-		
+		boolean possible = true;
+		List<Slot> list = inventoryTable.get(type);
+		int copy = quantity;
+		if(list!=null) {
+			
+			for (int i = 0; i < list.size() && quantity>0; i++) {
+				int cur = list.get(i).getQuantity();
+				int dif = Slot.MAX_VALUE-cur;
+				if(dif>= quantity) {
+					list.get(i).setQuantity(cur+quantity);
+					quantity=0;
+				}else {
+					list.get(i).setQuantity(Slot.MAX_VALUE);
+					quantity-=dif;
+				}
+					
+			}
+			
+			if(quantity>0) {
+				if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <=  COLUMNS-1) {
+					Slot add = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
+					
+					matrix[nextEmptySlotRow][nextEmptySlotColumn] = add;
+					list.add(add);
+					
+					nextEmptySlotColumn++;
+					
+					if(nextEmptySlotColumn==COLUMNS) {
+						nextEmptySlotColumn = 0;
+						nextEmptySlotRow++;
+					}
+					
+				}else {
+					possible = false;
+				}
+			}
+		}else {
+			if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <= COLUMNS-1) {
+				Slot ad = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
+				matrix[nextEmptySlotRow][nextEmptySlotColumn] = ad ;
+				List<Slot> li = new ArrayList<>();
+				li.add(ad);
+				inventoryTable.add(type,li );
+				possible = true;
+				
+				nextEmptySlotColumn++;
+				
+				if(nextEmptySlotColumn==COLUMNS) {
+					nextEmptySlotColumn = 0;
+					nextEmptySlotRow++;
+				}
+			}else {
+				possible = false;
+			}
+		}
 		
 		
 		

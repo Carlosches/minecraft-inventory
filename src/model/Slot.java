@@ -2,7 +2,7 @@ package model;
 
 public class Slot {
 	
-	
+	public static int MAX_VALUE = 64;
 	private int posRow;
 	private int posColumn;
 	private int quantity;
@@ -14,9 +14,11 @@ public class Slot {
 	 * @param posColumn
 	 * @param quantity
 	 */
-	public Slot(int posRow, int posColumn) {
+	public Slot(int posRow, int posColumn, int quantity) {
 		this.posRow = posRow;
 		this.posColumn = posColumn;
+		this.quantity = quantity;
+		
 		
 	}
 
