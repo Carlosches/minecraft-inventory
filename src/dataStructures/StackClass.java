@@ -29,10 +29,13 @@ public class StackClass<V> implements StackInterface<V> {
 	}
 
 	@Override
-	public void pop() {
+	public V pop() {
+		V value = null;
 		if(!isEmpty()) {
+			value = top.getValue();
 			top = top.getNext();
 		}
+		return value;
 	}
 
 }
