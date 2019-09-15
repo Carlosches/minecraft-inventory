@@ -1,13 +1,12 @@
-package model;
+package dataStructures;
 
-public class StackNode<V> {
-	
+public class QueueNode<V> {
+		
 	private V value;
-	private StackNode<V> next;
+	private QueueNode<V> next;
 	
-	public StackNode(V value, StackNode<V> next) {
+	public QueueNode(V value) {
 		this.value = value;
-		this.next = next;
 	}
 
 	/**
@@ -17,18 +16,18 @@ public class StackNode<V> {
 		return value;
 	}
 
-
+	
 	/**
 	 * @return the next
 	 */
-	public StackNode<V> getNext() {
+	public QueueNode<V> getNext() {
 		return next;
 	}
 
 	/**
 	 * @param next the next to set
 	 */
-	public void setNext(StackNode<V> next) {
+	public void setNext(QueueNode<V> next) {
 		this.next = next;
 	}
 	

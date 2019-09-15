@@ -2,7 +2,7 @@ package model;
 
 public class Slot {
 	
-	public static int MAX_VALUE = 64;
+	public final static int MAX_VALUE = 64;
 	private int posRow;
 	private int posColumn;
 	private int quantity;

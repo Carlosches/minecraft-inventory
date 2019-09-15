@@ -1,4 +1,4 @@
-package model;
+package dataStructures;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,6 @@ public class HashTable<K,V> implements Table<K,V> {
 	private int capacity; 
 	  
 	private int numNodes;
-	
-	
 	
 	/**
 	 * @param nodes
@@ -90,7 +88,6 @@ public class HashTable<K,V> implements Table<K,V> {
 
 	@Override
 	public int size() {
-
 		return numNodes;
 	}
 	

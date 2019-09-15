@@ -11,6 +11,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import dataStructures.HashTable;
+import dataStructures.Table;
+
 //______________________________________________________THE CLASS__________________________________________________________
 
 /**
@@ -46,7 +49,6 @@ public class Inventory {
 	public boolean addBlock(String type, int quantity){
 		boolean possible = true;
 		List<Slot> list = inventoryTable.get(type);
-		int copy = quantity;
 		if(list!=null) {
 			
 			for (int i = 0; i < list.size() && quantity>0; i++) {
