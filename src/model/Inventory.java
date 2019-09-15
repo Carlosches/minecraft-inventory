@@ -37,7 +37,7 @@ public class Inventory {
 //______________________________________________________METHODS___________________________________________________________
 
 	public Inventory() {
-		matrix = new Slot[ROWS][COLUMNS];
+		matrix = new Slot[ROWS-1][COLUMNS];
 		inventoryTable = new HashTable<>();
 	}
 
@@ -63,7 +63,7 @@ public class Inventory {
 			}
 			
 			if(quantity>0) {
-				if((nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <=  COLUMNS-1) && matrix[nextEmptySlotRow][nextEmptySlotColumn] == null) {
+				if((nextEmptySlotRow<=ROWS-2 && nextEmptySlotColumn <=  COLUMNS-1) && matrix[nextEmptySlotRow][nextEmptySlotColumn] == null) {
 					Slot add = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
 					add.setBlock(new Block(type));
 					matrix[nextEmptySlotRow][nextEmptySlotColumn] = add;
@@ -83,7 +83,7 @@ public class Inventory {
 		}else {
 			
 
-			if((nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <= COLUMNS-1) && matrix[nextEmptySlotRow][nextEmptySlotColumn] == null) {
+			if((nextEmptySlotRow<=ROWS-2 && nextEmptySlotColumn <= COLUMNS-1) && matrix[nextEmptySlotRow][nextEmptySlotColumn] == null) {
 
 				Slot ad = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
 				ad.setBlock(new Block(type));

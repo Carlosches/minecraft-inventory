@@ -133,7 +133,7 @@ public class InventoryController {
     				else {
     					int p = minecraftInventory.getNextEmptySlotRow();
     					int q = minecraftInventory.getNextEmptySlotColumn();
-    					while(minecraftInventory.getMatrix()[p][q] != null && (p < Inventory.ROWS-1 && q < Inventory.COLUMNS)) {
+    					while((p < Inventory.ROWS-1 && q < Inventory.COLUMNS) && minecraftInventory.getMatrix()[p][q] != null) {
     						q++;
     						if(q == Inventory.COLUMNS) {
     							q = 0;
@@ -192,6 +192,8 @@ public class InventoryController {
 			e.printStackTrace();
 		}
 		Scene scene = new Scene(root);
+		InventoryController iv = loader.getController();
+		iv.setStage(this.stage);
 		stage.setTitle("Minecraft inventory");
 		stage.setScene(scene);
 		stage.setResizable(false);
@@ -232,14 +234,14 @@ public class InventoryController {
 							l.setAlignment(Pos.CENTER_RIGHT);
 							l.setPrefWidth(90);
 							l.setPrefHeight(21);
-							VBox v = new VBox();
-							v.setPrefWidth(100);
-							v.setPrefHeight(200);
-							v.getChildren().add(img);
-							v.getChildren().add(l);
+							VBox vv = new VBox();
+							vv.setPrefWidth(100);
+							vv.setPrefHeight(200);
+							vv.getChildren().add(img);
+							vv.getChildren().add(l);
 							inventory.getChildren().remove(vBox);
-							inventoryMirror[j][k] = v;
-							inventory.add(v, k, j);
+							inventoryMirror[j][k] = vv;
+							inventory.add(vv, k, j);
 							minecraftInventory.getMatrix()[j][k] = null;
 							if(nextEmptyQuickAccessBar == 1) {
 								quick.add(vBox, i, 0);
@@ -264,9 +266,13 @@ public class InventoryController {
 							count--;
 						}
 						nextEmptyQuickAccessBar++;
-						v.setOnMouseClicked(null);
+						for (int i = 0; i < inventoryMirror.length; i++) {
+							for (int j = 0; j < inventoryMirror[i].length; j++) {
+								VBox box = inventoryMirror[i][j];
+								box.setOnMouseClicked(null);
+							}
+						}
 					}
-					
 				});
 			}
 		}
