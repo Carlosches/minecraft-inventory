@@ -169,7 +169,9 @@ public class InventoryController {
 						quick.setPrefSize(840, 69);
 						int minRow = 5;
 						int minCol = 10;
+						int count = 0;
 						for (int i = 0; i < slots.size() && i < 9; i++) {
+							count++;
 							int j = slots.get(i).getPosRow();
 							int k = slots.get(i).getPosColumn();
 							minRow = Math.min(minRow, j);
@@ -209,7 +211,10 @@ public class InventoryController {
 						quickAccessBarDisplay.getChildren().set(1, quick);
 						minecraftInventory.setNextEmptySlotRow(minRow);
 						minecraftInventory.setNextEmptySlotColumn(minCol);
-						slots.clear();
+						while(count > 0) {
+							slots.remove(0);
+							count--;
+						}
 						nextEmptyQuickAccessBar++;
 						v.setOnMouseClicked(null);
 					}
