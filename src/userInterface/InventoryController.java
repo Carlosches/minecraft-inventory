@@ -120,7 +120,9 @@ public class InventoryController {
     							}
     						}
     					}
-    				}else {
+    				}
+    				
+    				else {
     					
     				}
     			}else {

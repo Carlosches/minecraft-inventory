@@ -68,7 +68,7 @@ public class Inventory {
 					add.setBlock(new Block(type));
 					matrix[nextEmptySlotRow][nextEmptySlotColumn] = add;
 					list.add(add);
-					
+					System.out.println("enter "+ type);
 					nextEmptySlotColumn++;
 					
 					if(nextEmptySlotColumn==COLUMNS) {
@@ -81,6 +81,8 @@ public class Inventory {
 				}
 			}
 		}else {
+			
+			System.out.println("other list "+ type);
 			if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <= COLUMNS-1) {
 				Slot ad = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
 				ad.setBlock(new Block(type));
@@ -100,9 +102,6 @@ public class Inventory {
 				possible = false;
 			}
 		}
-		
-		
-		
 		return possible;
 	}
 	

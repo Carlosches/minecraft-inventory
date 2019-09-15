@@ -35,14 +35,17 @@ public class HashTable<K,V> implements Table<K,V> {
 		boolean found = false;
 		
 		while( !found && counter<capacity) {
+			
 			int index = getIndex(key, counter);
-			if(nodes.get(index)!= null && nodes.get(index).getKey() == key) {
+		
+			if(nodes.get(index)!= null && nodes.get(index).getKey().equals(key)) {
 				found = true;
 				value = nodes.get(index).getValue();
 			}
 			
 			counter++;
 		}
+		
 			return value;
 	}
 
@@ -56,6 +59,7 @@ public class HashTable<K,V> implements Table<K,V> {
 			
 			if(nodes.get(index)==null) {
 				found = true;
+				nodes.remove(index);
 				nodes.add(index, new HashNode<K, V>(key, value));
 				numNodes++;
 			}
@@ -95,6 +99,7 @@ public class HashTable<K,V> implements Table<K,V> {
 		int index = 0;
 		
 		int hashCode = Math.abs(key.hashCode());
+		
 		double A = (Math.sqrt(5) - 1 )/ 2;
 		int h1 = (int) Math.floor(capacity*(A*hashCode% 1));
 		
@@ -103,5 +108,6 @@ public class HashTable<K,V> implements Table<K,V> {
 		index = (h1 + h2*counter)%capacity;
 		return index;
 	}
-
+	
+	
 }
