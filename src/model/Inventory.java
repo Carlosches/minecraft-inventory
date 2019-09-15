@@ -1,27 +1,47 @@
+//______________________________________________________PACKAGE___________________________________________________________
+
+/**
+ *This package contains all the classes required to multiply matrices and finding prime numbers. 
+ */
+
 package model;
+
+//______________________________________________________IMPORTS___________________________________________________________
 
 import java.util.ArrayList;
 import java.util.List;
 
+//______________________________________________________THE CLASS__________________________________________________________
+
+/**
+* This class defines the necessary methods to multiply matrices and finding prime numbers. 
+* @author
+*/
 
 public class Inventory {
 	
+//______________________________________________________CONSTANTS___________________________________________________________	
+
 	public static final int ROWS = 4;
 	public static final int COLUMNS = 9;
-	
+
+//______________________________________________________ATTRIBUTES___________________________________________________________
+
 	private Slot[][] matrix;
 	
 	int nextEmptySlotRow;
 	int nextEmptySlotColumn;
 	
 	private Table<String, List<Slot>> inventoryTable;
-	
+
+//______________________________________________________METHODS___________________________________________________________
+
 	public Inventory() {
 		matrix = new Slot[ROWS][COLUMNS];
 		inventoryTable = new HashTable<>();
 	}
 
-	
+//________________________________________________________________________________________________________________
 	
 	public boolean addBlock(String type, int quantity){
 		boolean possible = true;
@@ -87,7 +107,7 @@ public class Inventory {
 	}
 	
 	
-	
+//________________________________________________________________________________________________________________
 	
 	/**
 	 * @return the matrix
@@ -96,6 +116,8 @@ public class Inventory {
 		return matrix;
 	}
 
+//________________________________________________________________________________________________________________
+
 	/**
 	 * @return the inventoryTable
 	 */
@@ -103,7 +125,7 @@ public class Inventory {
 		return inventoryTable;
 	}
 
-
+//________________________________________________________________________________________________________________
 
 	/**
 	 * @param nextEmptySlotRow the nextEmptySlotRow to set
@@ -112,8 +134,8 @@ public class Inventory {
 		this.nextEmptySlotRow = nextEmptySlotRow;
 	}
 
-
-
+//________________________________________________________________________________________________________________
+	
 	/**
 	 * @param nextEmptySlotColumn the nextEmptySlotColumn to set
 	 */
@@ -121,6 +143,6 @@ public class Inventory {
 		this.nextEmptySlotColumn = nextEmptySlotColumn;
 	}
 	
-	
+//________________________________________________________________________________________________________________
 	
 }
