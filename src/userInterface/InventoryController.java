@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -7,8 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import model.Block;
 import model.Inventory;
 import model.QueueClass;
@@ -30,6 +35,8 @@ import model.StackInterface;
 
 public class InventoryController {
 
+	private Stage stage;
+	
 	private QueueInterface<GridPane> quickAccessBars;
 	
 	private QueueInterface<StackInterface<VBox>> quickAccessBarsMirror;
@@ -120,10 +127,38 @@ public class InventoryController {
     							}
     						}
     					}
+
     				}
     				
     				else {
-    					
+    					int p = minecraftInventory.getNextEmptySlotRow();
+    					int q = minecraftInventory.getNextEmptySlotColumn();
+    					while(minecraftInventory.getMatrix()[p][q] != null && (p < Inventory.ROWS-1 && q < Inventory.COLUMNS)) {
+    						q++;
+    						if(q == Inventory.COLUMNS) {
+    							q = 0;
+    							p++;
+    						}
+    					}
+    					if(!(p == Inventory.ROWS-1 && q == Inventory.COLUMNS)) {
+    						minecraftInventory.setNextEmptySlotRow(p);
+    						minecraftInventory.setNextEmptySlotColumn(q);
+    						if(minecraftInventory.addBlock(itemSelector.getValue(), a)) {
+    	    					for (int i = 0; i < 3; i++) {
+    	    						for (int j = 0; j < 9; j++) {
+    	    							Slot current = minecraftInventory.getMatrix()[i][j];
+    	    							if(current!=null) {
+    	    								VBox v = inventoryMirror[i][j];
+    	    								ImageView img = (ImageView) v.getChildren().get(0);
+    	    								Label l = (Label) v.getChildren().get(1);
+    	    								l.setText("" + current.getQuantity());
+    	    								img.setImage(new Image(current.getBlock().getImage()));
+    	    							}
+    	    						}
+    	    					}
+    						}
+    					}
+
     				}
     			}else {
     				quantitySelector.clear();
@@ -149,7 +184,18 @@ public class InventoryController {
 
     @FXML
     void clearInventoryButton(ActionEvent event) {
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("inventoryGUI.fxml"));
+    	Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		stage.setTitle("Minecraft inventory");
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
     }
     
     @FXML
@@ -226,4 +272,8 @@ public class InventoryController {
 		}
     }
 
+    public void setStage(Stage stage) {
+    	this.stage = stage;
+    }
+    
 }

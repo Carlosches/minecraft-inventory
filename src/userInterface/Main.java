@@ -14,9 +14,11 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("inventoryGUI.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("inventoryGUI.fxml"));
+		Parent root = loader.load();
 		Scene scene = new Scene(root);
-		
+		InventoryController iv = loader.getController();
+		iv.setStage(stage);
 		stage.setTitle("Minecraft inventory");
 		stage.setScene(scene);
 		stage.setResizable(false);

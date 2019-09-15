@@ -63,7 +63,7 @@ public class Inventory {
 			}
 			
 			if(quantity>0) {
-				if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <=  COLUMNS-1) {
+				if((nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <=  COLUMNS-1) && matrix[nextEmptySlotRow][nextEmptySlotColumn] == null) {
 					Slot add = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
 					add.setBlock(new Block(type));
 					matrix[nextEmptySlotRow][nextEmptySlotColumn] = add;
@@ -82,8 +82,9 @@ public class Inventory {
 			}
 		}else {
 			
-			System.out.println("other list "+ type);
-			if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <= COLUMNS-1) {
+
+			if((nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <= COLUMNS-1) && matrix[nextEmptySlotRow][nextEmptySlotColumn] == null) {
+
 				Slot ad = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
 				ad.setBlock(new Block(type));
 				matrix[nextEmptySlotRow][nextEmptySlotColumn] = ad ;
@@ -141,7 +142,23 @@ public class Inventory {
 	public void setNextEmptySlotColumn(int nextEmptySlotColumn) {
 		this.nextEmptySlotColumn = nextEmptySlotColumn;
 	}
+
+	/**
+	 * @return the nextEmptySlotRow
+	 */
+	public int getNextEmptySlotRow() {
+		return nextEmptySlotRow;
+	}
+
+	/**
+	 * @return the nextEmptySlotColumn
+	 */
+	public int getNextEmptySlotColumn() {
+		return nextEmptySlotColumn;
+	}
 	
 //________________________________________________________________________________________________________________
+	
+	
 	
 }
