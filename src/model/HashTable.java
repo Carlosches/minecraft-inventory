@@ -11,8 +11,6 @@ public class HashTable<K,V> implements Table<K,V> {
 	  
 	private int numNodes;
 	
-	
-	
 	/**
 	 * @param nodes
 	 * @param capacity
@@ -90,7 +88,6 @@ public class HashTable<K,V> implements Table<K,V> {
 
 	@Override
 	public int size() {
-
 		return numNodes;
 	}
 	
