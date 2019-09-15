@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -7,8 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import model.Block;
 import model.Inventory;
 import model.QueueClass;
@@ -30,6 +35,8 @@ import model.StackInterface;
 
 public class InventoryController {
 
+	private Stage stage;
+	
 	private QueueInterface<GridPane> quickAccessBars;
 	
 	private QueueInterface<StackInterface<VBox>> quickAccessBarsMirror;
@@ -147,7 +154,18 @@ public class InventoryController {
 
     @FXML
     void clearInventoryButton(ActionEvent event) {
-
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("inventoryGUI.fxml"));
+    	Parent root = null;
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		stage.setTitle("Minecraft inventory");
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
     }
     
     @FXML
@@ -224,4 +242,8 @@ public class InventoryController {
 		}
     }
 
+    public void setStage(Stage stage) {
+    	this.stage = stage;
+    }
+    
 }
