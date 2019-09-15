@@ -36,7 +36,6 @@ public class HashTable<K,V> implements Table<K,V> {
 		
 		while( !found && counter<capacity) {
 			int index = getIndex(key, counter);
-			System.out.println(index + " " +counter);
 			if(nodes.get(index)!= null && nodes.get(index).getKey() == key) {
 				found = true;
 				value = nodes.get(index).getValue();

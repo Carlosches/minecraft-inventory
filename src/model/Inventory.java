@@ -45,7 +45,7 @@ public class Inventory {
 			if(quantity>0) {
 				if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <=  COLUMNS-1) {
 					Slot add = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
-					
+					add.setBlock(new Block(type));
 					matrix[nextEmptySlotRow][nextEmptySlotColumn] = add;
 					list.add(add);
 					
@@ -63,10 +63,11 @@ public class Inventory {
 		}else {
 			if(nextEmptySlotRow<=ROWS-2 || nextEmptySlotColumn <= COLUMNS-1) {
 				Slot ad = new Slot(nextEmptySlotRow,nextEmptySlotColumn, quantity);
+				ad.setBlock(new Block(type));
 				matrix[nextEmptySlotRow][nextEmptySlotColumn] = ad ;
 				List<Slot> li = new ArrayList<>();
 				li.add(ad);
-				inventoryTable.add(type,li );
+				inventoryTable.add(type,li);
 				possible = true;
 				
 				nextEmptySlotColumn++;
@@ -100,6 +101,24 @@ public class Inventory {
 	 */
 	public Table<String, List<Slot>> getInventoryTable() {
 		return inventoryTable;
+	}
+
+
+
+	/**
+	 * @param nextEmptySlotRow the nextEmptySlotRow to set
+	 */
+	public void setNextEmptySlotRow(int nextEmptySlotRow) {
+		this.nextEmptySlotRow = nextEmptySlotRow;
+	}
+
+
+
+	/**
+	 * @param nextEmptySlotColumn the nextEmptySlotColumn to set
+	 */
+	public void setNextEmptySlotColumn(int nextEmptySlotColumn) {
+		this.nextEmptySlotColumn = nextEmptySlotColumn;
 	}
 	
 	

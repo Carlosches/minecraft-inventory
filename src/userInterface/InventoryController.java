@@ -1,25 +1,49 @@
 package userInterface;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import model.Block;
 import model.Inventory;
+import model.QueueClass;
+import model.QueueInterface;
 import model.Slot;
+import model.StackClass;
+import model.StackInterface;
 
 public class InventoryController {
 
+	private QueueInterface<GridPane> quickAccessBars;
+	
+	private QueueInterface<StackInterface<VBox>> quickAccessBarsMirror;
+	
+	private int nextEmptyQuickAccessBar;
+	
+	private int currentQuickAccessBar;
+	
 	private Inventory minecraftInventory;
 	
 	private VBox[][] inventoryMirror;
+	
+    @FXML
+    private BorderPane parent;
 	
     @FXML
     private GridPane inventory;
@@ -35,9 +59,17 @@ public class InventoryController {
 
     @FXML
     private GridPane quickAccessBar;
-
+    
+    @FXML
+    private HBox quickAccessBarDisplay;
+    
     @FXML
     public void initialize() {
+    	quickAccessBars = new QueueClass<>();
+    	quickAccessBarsMirror = new QueueClass<>();
+    	quickAccessBarsMirror.enqueue(new StackClass<>());
+    	nextEmptyQuickAccessBar = 1;
+    	currentQuickAccessBar = 1;
     	ObservableList<String> o = FXCollections.observableArrayList(Block.WOOD, Block.COBBLESTONE, Block.STONE
     			, Block.GRAVEL, Block.ANDESITE, Block.DIRT, Block.SAND, Block.WOODPLANKS, Block.OBSIDIAN
     			, Block.BRICK, Block.GRANITE, Block.DIORITE, Block.TNT, Block.IRON_ORE, Block.GOLD_ORE);
@@ -57,6 +89,7 @@ public class InventoryController {
 				v.setPrefHeight(200);
 				v.getChildren().add(img);
 				v.getChildren().add(l);
+				
 				inventory.add(v, j, i);
 				inventoryMirror[i][j] = v;
 			}
@@ -83,7 +116,7 @@ public class InventoryController {
     								ImageView img = (ImageView) v.getChildren().get(0);
     								Label l = (Label) v.getChildren().get(1);
     								l.setText("" + current.getQuantity());
-    								//img.setImage(new Image(current.getBlock().getImage()));
+    								img.setImage(new Image(current.getBlock().getImage()));
     							}
     						}
     					}
@@ -102,12 +135,88 @@ public class InventoryController {
     
     @FXML
     void changeBarButton(ActionEvent event) {
-
+			quickAccessBars.enqueue(quickAccessBars.dequeue());
+			quickAccessBarDisplay.getChildren().set(1, quickAccessBars.front());
+			if(currentQuickAccessBar == nextEmptyQuickAccessBar-1)
+				currentQuickAccessBar = 1;
+			else
+				currentQuickAccessBar++;
+			quickAccessNumber.setText(currentQuickAccessBar + "");
+		
     }
 
     @FXML
     void clearInventoryButton(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void newQuickAccessBar(ActionEvent event) {
+    	for (int i = 0; i < inventoryMirror.length; i++) {
+			for (int j = 0; j < inventoryMirror[i].length; j++) {
+				VBox v = inventoryMirror[i][j];
+				int p = i;
+				int q = j;
+				v.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+					@Override
+					public void handle(MouseEvent arg0) {
+						String type = minecraftInventory.getMatrix()[p][q].getBlock().getType();
+						List<Slot> slots = minecraftInventory.getInventoryTable().get(type);
+						GridPane quick = new GridPane();
+						quick.setGridLinesVisible(true);
+						quick.setStyle("-fx-background-color:#8b8b8b; -fx-border-color: black;");
+						quick.setPrefSize(840, 69);
+						int minRow = 5;
+						int minCol = 10;
+						for (int i = 0; i < slots.size() && i < 9; i++) {
+							int j = slots.get(i).getPosRow();
+							int k = slots.get(i).getPosColumn();
+							minRow = Math.min(minRow, j);
+							minCol = Math.min(minCol, k);
+							VBox vBox = inventoryMirror[j][k];
+							ImageView img = new ImageView();
+							img.setFitWidth(91);
+							img.setFitHeight(48);
+							Label l = new Label();
+							l.setAlignment(Pos.CENTER_RIGHT);
+							l.setPrefWidth(90);
+							l.setPrefHeight(21);
+							VBox v = new VBox();
+							v.setPrefWidth(100);
+							v.setPrefHeight(200);
+							v.getChildren().add(img);
+							v.getChildren().add(l);
+							inventory.getChildren().remove(vBox);
+							inventoryMirror[j][k] = v;
+							inventory.add(v, k, j);
+							minecraftInventory.getMatrix()[j][k] = null;
+							if(nextEmptyQuickAccessBar == 1) {
+								quick.add(vBox, i, 0);
+								quickAccessBarsMirror.front().push(vBox);
+							}else {
+								currentQuickAccessBar = nextEmptyQuickAccessBar;
+								quickAccessNumber.setText(currentQuickAccessBar + "");
+								quick.add(vBox, i, 0);
+								quickAccessBarsMirror.front().push(vBox);
+							}
+							
+						}
+						
+						quickAccessBars.enqueue(quick);
+						while(!quickAccessBars.front().equals(quick))
+							quickAccessBars.enqueue(quickAccessBars.dequeue());
+						quickAccessBarDisplay.getChildren().set(1, quick);
+						minecraftInventory.setNextEmptySlotRow(minRow);
+						minecraftInventory.setNextEmptySlotColumn(minCol);
+						slots.clear();
+						nextEmptyQuickAccessBar++;
+						v.setOnMouseClicked(null);
+					}
+					
+				});
+			}
+		}
     }
 
 }

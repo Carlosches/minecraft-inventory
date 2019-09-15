@@ -15,8 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1097.0" style="-fx-background-color: #c6c6c6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.InventoryController">
+<BorderPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="1097.0" style="-fx-background-color: #c6c6c6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.InventoryController">
    <center>
       <GridPane fx:id="inventory" gridLinesVisible="true" prefHeight="196.0" prefWidth="829.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -40,18 +39,24 @@
    <right>
       <VBox alignment="CENTER" prefHeight="502.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
-            <ComboBox fx:id="itemSelector" prefWidth="150.0" />
+            <ComboBox fx:id="itemSelector" prefWidth="150.0" promptText="Block to be added" />
+            <Label text="Quantity">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
             <TextField fx:id="quantitySelector" prefHeight="31.0" prefWidth="95.0">
                <VBox.margin>
-                  <Insets left="5.0" right="5.0" top="30.0" />
+                  <Insets left="5.0" right="5.0" />
                </VBox.margin>
             </TextField>
             <Button mnemonicParsing="false" onAction="#addItemButton" text="ADD ITEM">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#clearInventoryButton" text="CLEAR">
+            <Button mnemonicParsing="false" onAction="#newQuickAccessBar" text="NEW QUICK ACCESS BAR" />
+            <Button mnemonicParsing="false" onAction="#clearInventoryButton" text="CLEAR INVENTORY">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -60,14 +65,14 @@
       </VBox>
    </right>
    <bottom>
-      <HBox alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="1097.0" BorderPane.alignment="CENTER">
+      <HBox fx:id="quickAccessBarDisplay" alignment="CENTER_LEFT" prefHeight="69.0" prefWidth="1097.0">
          <children>
             <Label fx:id="quickAccessNumber" alignment="CENTER" prefHeight="21.0" prefWidth="106.0" text="1">
                <font>
                   <Font size="40.0" />
                </font>
             </Label>
-            <GridPane fx:id="quickAccessBar" gridLinesVisible="true" prefHeight="69.0" prefWidth="829.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
+            <GridPane fx:id="quickAccessBar" gridLinesVisible="true" prefHeight="69.0" prefWidth="840.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -96,9 +101,6 @@
                </graphic>
             </Button>
          </children>
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
       </HBox>
    </bottom>
    <left>

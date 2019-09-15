@@ -38,15 +38,64 @@ public class Block {
 	 * @param image
 	 * @param type
 	 */
-	public Block(String image, String type) {
-		this.image = image;
+	public Block(String type) {
 		this.type = type;
+		switch(type) {
+			case WOOD:
+				image = WOODI;
+			break;
+			case ANDESITE:
+				image = ANDESITEI;
+			break;
+			case BRICK:
+				image = BRICKI;
+			break;
+			case COBBLESTONE:
+				image = COBBLESTONEI;
+			break;
+			case DIORITE:
+				image = DIORITEI;
+			break;
+			case DIRT:
+				image = DIRTI;
+			break;
+			case GOLD_ORE:
+				image = GOLD_OREI;
+			break;
+			case GRANITE:
+				image = GRANITEI;
+			break;
+			case GRAVEL:
+				image = GRAVELI;
+			break;
+			case IRON_ORE:
+				image = IRON_OREI;
+			break;
+			case OBSIDIAN:
+				image = OBSIDIANI;
+			break;
+			case SAND:
+				image = SANDI;
+			break;
+			case STONE:
+				image = STONEI;
+			break;
+			case TNT:
+				image = TNTI;
+			break;
+			case WOODPLANKS:
+				image = WOODPLANKSI;
+			break;
+		}
 	}
 	/**
 	 * @return the image
 	 */
 	public String getImage() {
 		return image;
+	}
+	public String getType() {
+		return type;
 	}
 	
 }

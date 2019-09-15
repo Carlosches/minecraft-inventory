@@ -78,6 +78,10 @@ public class Slot {
 		this.block = block;
 		quantity+=quant;
 	}
+
+	public void setBlock(Block b) {
+		this.block = b;
+	}
 	
 	
 	
