@@ -1,4 +1,4 @@
-package model;
+package dataStructures;
 
 public class QueueClass<V> implements QueueInterface<V> {
 	

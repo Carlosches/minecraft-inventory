@@ -1,4 +1,4 @@
-package model;
+package dataStructures;
 
 public class StackClass<V> implements StackInterface<V> {
 	

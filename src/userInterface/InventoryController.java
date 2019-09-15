@@ -1,8 +1,8 @@
 package userInterface;
 
+import dataStructures.*;
 import java.io.IOException;
 import java.util.List;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,11 +27,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.Block;
 import model.Inventory;
-import model.QueueClass;
-import model.QueueInterface;
 import model.Slot;
-import model.StackClass;
-import model.StackInterface;
 
 public class InventoryController {
 
