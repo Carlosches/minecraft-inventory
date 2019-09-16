@@ -1,8 +1,6 @@
-package model;
+package dataStructures;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 
 class StackClassTest {
@@ -26,7 +24,7 @@ class StackClassTest {
 	private void stage3() {
 		
 		stack = new StackClass<Integer>();
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 100000; i++) {
 			stack.push(i);
 		}
 		
@@ -91,7 +89,7 @@ class StackClassTest {
 		
 		stack.pop();
 		
-		assertTrue("The top element was not removed", stack.top() == 998);
+		assertTrue("The top element was not removed", stack.top() == 99998);
 		
 	}
 	
@@ -102,7 +100,7 @@ class StackClassTest {
 		
 		stage3();
 		
-		for (int i = 0; i < 999; i++) {
+		for (int i = 0; i < 99999; i++) {
 			stack.pop();
 		}
 		
@@ -119,10 +117,33 @@ class StackClassTest {
 		
 		stage3();
 		
-		assertTrue("The top element is not the correct one", stack.top() == 999);
+		assertTrue("The top element is not the correct one", stack.top() == 99999);
 		
 	}
+	
+//________________________________________________________________________________________________________________
+	
+	@Test
+	public void testIsEmpty() {
+		
+		stage2();
+		
+		assertTrue("The stack is not empty", stack.isEmpty() == true);
+		
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
