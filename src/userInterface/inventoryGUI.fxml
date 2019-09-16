@@ -107,63 +107,72 @@
       <VBox prefHeight="473.0" prefWidth="106.0" BorderPane.alignment="CENTER" />
    </left>
    <top>
-      <HBox prefHeight="321.0" prefWidth="1097.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <GridPane gridLinesVisible="true" prefHeight="310.0" prefWidth="93.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <HBox.margin>
-                  <Insets bottom="30.0" left="105.0" top="30.0" />
-               </HBox.margin>
-            </GridPane>
-            <ImageView fitHeight="263.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets bottom="30.0" left="50.0" top="30.0" />
-               </HBox.margin>
-               <image>
-                  <Image url="@../resources/sccpre.cat-minecraft-steve-png-580525.png" />
-               </image>
-            </ImageView>
-            <GridPane disable="true" gridLinesVisible="true" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <HBox.margin>
-                  <Insets bottom="50.0" left="30.0" top="50.0" />
-               </HBox.margin>
-            </GridPane>
-            <ImageView fitHeight="112.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
-               <image>
-                  <Image url="@../resources/iconfinder_FEZ-07_196909.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" top="110.0" />
-               </HBox.margin>
-            </ImageView>
-            <GridPane gridLinesVisible="true" prefHeight="238.0" prefWidth="100.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <HBox.margin>
-                  <Insets bottom="120.0" top="120.0" />
-               </HBox.margin>
-            </GridPane>
+            <HBox prefHeight="321.0" prefWidth="1097.0">
+               <children>
+                  <GridPane gridLinesVisible="true" prefHeight="310.0" prefWidth="93.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="105.0" top="30.0" />
+                     </HBox.margin>
+                  </GridPane>
+                  <ImageView fitHeight="263.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets bottom="30.0" left="50.0" top="30.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@../resources/sccpre.cat-minecraft-steve-png-580525.png" />
+                     </image>
+                  </ImageView>
+                  <GridPane disable="true" gridLinesVisible="true" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <HBox.margin>
+                        <Insets bottom="50.0" left="30.0" top="50.0" />
+                     </HBox.margin>
+                  </GridPane>
+                  <ImageView fitHeight="112.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+                     <image>
+                        <Image url="@../resources/iconfinder_FEZ-07_196909.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" top="110.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <GridPane gridLinesVisible="true" prefHeight="238.0" prefWidth="100.0" style="-fx-background-color: #8b8b8b; -fx-border-color: black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <HBox.margin>
+                        <Insets bottom="120.0" top="120.0" />
+                     </HBox.margin>
+                  </GridPane>
+               </children>
+            </HBox>
+            <Label fx:id="quickAccessBarLabel" alignment="CENTER" prefHeight="17.0" prefWidth="513.0" text="Select an item in the inventory!" visible="false">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
-      </HBox>
+      </VBox>
    </top>
 </BorderPane>

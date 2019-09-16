@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,41 +30,94 @@ import model.Slot;
 
 public class InventoryController {
 
+	/**
+	 * The controller's main stage.
+	 */
 	private Stage stage;
 	
+	/**
+	 * The queue of quick access bars of the controller.
+	 */
 	private QueueInterface<GridPane> quickAccessBars;
 	
+	/**
+	 * The mirror queue of quick access bars that allow to control the interface's quick access bars.
+	 */
 	private QueueInterface<StackInterface<VBox>> quickAccessBarsMirror;
 	
+	/**
+	 * The next empty quick access bar to be filled.
+	 */
 	private int nextEmptyQuickAccessBar;
 	
+	/**
+	 * The current quick access bar that is being displayed.
+	 */
 	private int currentQuickAccessBar;
 	
+	/**
+	 * The controller's inventory that is being displayed.
+	 */
 	private Inventory minecraftInventory;
 	
+	/**
+	 * The mirror of the inventory that allows to have control over the ui's elements.
+	 */
 	private VBox[][] inventoryMirror;
 	
+    /**
+     * The main borderpane that wraps all the interface's elements.
+     */
     @FXML
     private BorderPane parent;
 	
+    /**
+     * The gridpane that allows to visualize the inventory on screen.
+     */
     @FXML
     private GridPane inventory;
 
+    /**
+     * The combobox that allows the user to choose which block to add to the inventory.
+     */
     @FXML
     private ComboBox<String> itemSelector;
 
+    /**
+     * The label that displays whenever a new quick access bar is to be added.
+     */
+    @FXML
+    private Label quickAccessBarLabel;
+    
+    /**
+     * The textfield that allows the user to enter how many blocks he wants to add.
+     */
     @FXML
     private TextField quantitySelector;
 
+    /**
+     * The label that shows which quick access inventory is being displayed.
+     */
     @FXML
     private Label quickAccessNumber;
 
+    /**
+     * The gridpane that represents the quick access bar on screen.
+     */
     @FXML
-    private GridPane quickAccessBar;
+    private GridPane quickSAccessBar;
     
+    /**
+     * The HBox that wraps all the elements composing the quick access bar.
+     */
     @FXML
     private HBox quickAccessBarDisplay;
     
+    /**
+     * The initialize function which runs as soon as the interface is loaded.
+     * Responsible of initializing the inventory and all it's assets.
+     * Post: The interface is now being displayed on screen.
+     */
     @FXML
     public void initialize() {
     	quickAccessBars = new QueueClass<>();
@@ -98,6 +152,11 @@ public class InventoryController {
     	minecraftInventory = new Inventory();
     }
     
+    /**
+     * This function is triggered whenever the add item button is clicked.
+     * Responsible of adding a new block into the inventory if possible and showing it on screen.
+     * @param event The action event that triggered this function.
+     */
     @FXML
     void addItemButton(ActionEvent event) {
     	if(!itemSelector.getValue().isEmpty()) {
@@ -164,6 +223,11 @@ public class InventoryController {
     		itemSelector.setPromptText("Please select a block to be added");
     }
     
+    /**
+     * This function is triggered whenever the change bar(arrow) button is clicked.
+     * Responsible of showing the next quick access bar on screen.
+     * @param event The action event that triggered this function.
+     */
     @FXML
     void changeBarButton(ActionEvent event) {
 			quickAccessBars.enqueue(quickAccessBars.dequeue());
@@ -176,6 +240,11 @@ public class InventoryController {
 		
     }
 
+    /**
+     * This function is triggered whenever the clear inventory button is clicked.
+     * Responsible of clearing all the items in the inventory when clicked, including the quick access items.
+     * @param event The action event that triggered this function.
+     */
     @FXML
     void clearInventoryButton(ActionEvent event) {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("inventoryGUI.fxml"));
@@ -194,8 +263,14 @@ public class InventoryController {
 		stage.show();
     }
     
+    /**
+     * This function is triggered whenever the new quick access bar button is clicked.
+     * Responsible of creating a new quick access bar and displaying it.
+     * @param event The action event that triggered this function.
+     */
     @FXML
     void newQuickAccessBar(ActionEvent event) {
+    	quickAccessBarLabel.setVisible(true);
     	for (int i = 0; i < inventoryMirror.length; i++) {
 			for (int j = 0; j < inventoryMirror[i].length; j++) {
 				VBox v = inventoryMirror[i][j];
@@ -266,12 +341,17 @@ public class InventoryController {
 								box.setOnMouseClicked(null);
 							}
 						}
+						quickAccessBarLabel.setVisible(false);
 					}
 				});
 			}
 		}
     }
 
+    /**
+     * This function modifies the controller's stage.
+     * @param stage The new stage to be set.
+     */
     public void setStage(Stage stage) {
     	this.stage = stage;
     }

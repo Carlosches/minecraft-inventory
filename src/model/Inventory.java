@@ -25,20 +25,40 @@ public class Inventory {
 	
 //______________________________________________________CONSTANTS___________________________________________________________	
 
+	/**
+	 * The amount of rows in the inventory.
+	 */
 	public static final int ROWS = 4;
+	
+	/**
+	 * The amount of columns in the inventory.
+	 */
 	public static final int COLUMNS = 9;
 
 //______________________________________________________ATTRIBUTES___________________________________________________________
 
+	/**
+	 * The matrix of slots representing the minecraft inventory.
+	 */
 	private Slot[][] matrix;
 	
+	/**
+	 * The next empty row position in the slot matrix.
+	 */
 	int nextEmptySlotRow;
+	
+	/**
+	 * The next empty column position in the slot matrix.
+	 */
 	int nextEmptySlotColumn;
 	
 	private Table<String, List<Slot>> inventoryTable;
 
 //______________________________________________________METHODS___________________________________________________________
 
+	/**
+	 * This function initializes a new inventory.
+	 */
 	public Inventory() {
 		matrix = new Slot[ROWS-1][COLUMNS];
 		inventoryTable = new HashTable<>();
@@ -46,6 +66,12 @@ public class Inventory {
 
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function adds a block into a new slot or to an existing slot if there is a block of the same type with enough space.
+	 * @param type The type of block to be added.
+	 * @param quantity The amount of blocks of this type to be added.
+	 * @return A boolean value representing whether the block was added or not.
+	 */
 	public boolean addBlock(String type, int quantity){
 		boolean possible = true;
 		List<Slot> list = inventoryTable.get(type);
@@ -112,7 +138,8 @@ public class Inventory {
 //________________________________________________________________________________________________________________
 	
 	/**
-	 * @return the matrix
+	 * This function obtains this inventory's matrix.
+	 * @return the matrix of slots representing the inventory.
 	 */
 	public Slot[][] getMatrix() {
 		return matrix;
@@ -121,7 +148,8 @@ public class Inventory {
 //________________________________________________________________________________________________________________
 
 	/**
-	 * @return the inventoryTable
+	 * This function obtains this inventory's hash table with the blocks that have been added to it.
+	 * @return the inventoryTable of the inventory.
 	 */
 	public Table<String, List<Slot>> getInventoryTable() {
 		return inventoryTable;
@@ -130,7 +158,8 @@ public class Inventory {
 //________________________________________________________________________________________________________________
 
 	/**
-	 * @param nextEmptySlotRow the nextEmptySlotRow to set
+	 * This function modifies the next empty row slot in the inventory.
+	 * @param nextEmptySlotRow the nextEmptySlotRow to set.
 	 */
 	public void setNextEmptySlotRow(int nextEmptySlotRow) {
 		this.nextEmptySlotRow = nextEmptySlotRow;
@@ -139,21 +168,24 @@ public class Inventory {
 //________________________________________________________________________________________________________________
 	
 	/**
-	 * @param nextEmptySlotColumn the nextEmptySlotColumn to set
+	 * This function modifies the next empty column slot in the inventory.
+	 * @param nextEmptySlotColumn the nextEmptySlotColumn to set.
 	 */
 	public void setNextEmptySlotColumn(int nextEmptySlotColumn) {
 		this.nextEmptySlotColumn = nextEmptySlotColumn;
 	}
 
 	/**
-	 * @return the nextEmptySlotRow
+	 * This function obtains the next empty row slot in the inventory.
+	 * @return the nextEmptySlotRow in the inventory.
 	 */
 	public int getNextEmptySlotRow() {
 		return nextEmptySlotRow;
 	}
 
 	/**
-	 * @return the nextEmptySlotColumn
+	 * This function obtains the next empty column slot in the inventory.
+	 * @return the nextEmptySlotColumn in the inventory.
 	 */
 	public int getNextEmptySlotColumn() {
 		return nextEmptySlotColumn;
