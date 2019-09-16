@@ -5,16 +5,23 @@ import java.util.List;
 
 public class HashTable<K,V> implements Table<K,V> {
 	
+	/**
+	 * The list of hash nodes that represent all the keys and values of this hash table.
+	 */
 	private List<HashNode<K,V>> nodes;
 	
+	/**
+	 * The current holding capacity of this hash table.
+	 */
 	private int capacity; 
 	  
+	/**
+	 * The size of this hash table.
+	 */
 	private int numNodes;
 	
 	/**
-	 * @param nodes
-	 * @param capacity
-	 * @param numNodes
+	 * This function initializes a new Hash Table with generics.
 	 */
 	public HashTable() {
 		capacity = 10;
@@ -25,6 +32,9 @@ public class HashTable<K,V> implements Table<K,V> {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see dataStructures.Table#get(java.lang.Object)
+	 */
 	@Override
 	public V get(K key) {
 		
@@ -47,6 +57,9 @@ public class HashTable<K,V> implements Table<K,V> {
 			return value;
 	}
 
+	/* (non-Javadoc)
+	 * @see dataStructures.Table#add(java.lang.Object, java.lang.Object)
+	 */
 	@Override
 	public void add(K key, V value) {
 		
@@ -75,6 +88,9 @@ public class HashTable<K,V> implements Table<K,V> {
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see dataStructures.Table#containsKey(java.lang.Object)
+	 */
 	@Override
 	public boolean containsKey(K key) {
 		int index = getIndex(key, 0);
@@ -86,12 +102,21 @@ public class HashTable<K,V> implements Table<K,V> {
 		return contains;
 	}
 
+	/* (non-Javadoc)
+	 * @see dataStructures.Table#size()
+	 */
 	@Override
 	public int size() {
 		return numNodes;
 	}
 	
 	
+	/**
+	 * This function hashes the key in order to obtain the position where the key is to be inserted or obtained from.
+	 * @param key The key to be hashed.
+	 * @param counter The counter which is auxiliary in the hash function.
+	 * @return The index that this key is hashed to.
+	 */
 	private int getIndex(K key, int counter) {
 		int index = 0;
 		

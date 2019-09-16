@@ -8,10 +8,18 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
+	/**
+	* The main function responsible of initiating the program.
+	* @param args Used to launch the program.
+	*/
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/**
+	* The start function which initializes the stage and displays it.
+	* @param stage The main stage of the graphical interface.
+	*/
 	@Override
 	public void start(Stage stage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("inventoryGUI.fxml"));
