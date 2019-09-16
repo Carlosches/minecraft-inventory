@@ -7,20 +7,32 @@ class QueueClassTest {
 
 //________________________________________________ATTRIBUTES________________________________________________________________
 
+	/**
+	 * The queue that is to be tested.
+	 */
 	private QueueClass<Integer> queue;
 	
 //________________________________________________STAGES________________________________________________________________
 
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage1() {
 		
 	}
 	
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage2() {
 		
 		queue = new QueueClass<Integer>();
 		
 	}
 	
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage3() {
 		
 		queue = new QueueClass<Integer>();
@@ -32,6 +44,9 @@ class QueueClassTest {
 
 //________________________________________________TEST METHODS________________________________________________________________
 	
+	/**
+	 * This function tests the queue's constructor.
+	 */
 	@Test
 	public void testQueueClass() {
 		
@@ -45,6 +60,9 @@ class QueueClassTest {
 
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the queue's enqueueing operation with a standard case.
+	 */
 	@Test
 	public void testEnqueue_StandarCase() {
 		
@@ -61,6 +79,9 @@ class QueueClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the queue's enqueueing operation with a limit case.
+	 */
 	@Test
 	public void testEnqueue_LimitCase() {
 		
@@ -83,6 +104,9 @@ class QueueClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the queue's dequeueing operation with a standard case.
+	 */
 	@Test
 	public void testDequeue_StandarCase() {
 		
@@ -96,6 +120,9 @@ class QueueClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the queue's dequeueing operation with a limit case.
+	 */
 	@Test
 	public void testDequeue_LimitCase() {
 		
@@ -113,6 +140,9 @@ class QueueClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the queue's is empty operation with a standard case.
+	 */
 	@Test
 	public void testIsEmpty() {
 		
@@ -124,6 +154,9 @@ class QueueClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the queue's front operation with a standard case.
+	 */
 	@Test
 	public void testFront() {
 		

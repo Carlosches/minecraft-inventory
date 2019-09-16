@@ -7,20 +7,32 @@ class StackClassTest {
 
 //________________________________________________ATTRIBUTES________________________________________________________________
 
+	/**
+	 * The stack that is to be tested.
+	 */
 	private StackClass<Integer> stack;
 	
 //________________________________________________STAGES________________________________________________________________
 
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage1() {
 		
 	}
 	
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage2() {
 		
 		stack = new StackClass<Integer>();
 		
 	}
 	
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage3() {
 		
 		stack = new StackClass<Integer>();
@@ -32,6 +44,9 @@ class StackClassTest {
 	
 //________________________________________________TEST METHODS________________________________________________________________
 
+	/**
+	 * This function tests the stack's constructor.
+	 */
 	@Test
 	public void testStackClass() {
 		
@@ -45,6 +60,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the stack's pushing operation with a standard case.
+	 */
 	@Test
 	public void testPush_StandarCase() {
 		
@@ -60,6 +78,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the stack's pushing operation with a limit case.
+	 */
 	@Test
 	public void testPush_LimitCase() {
 		
@@ -82,6 +103,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the stack's popping operation with a standard case.
+	 */
 	@Test
 	public void testPop_StandarCase() {
 		
@@ -95,6 +119,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the stack's popping operation with a limit case.
+	 */
 	@Test
 	public void testPop_LimitCase() {
 		
@@ -112,6 +139,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the stack's top operation with a standard case.
+	 */
 	@Test 
 	public void testTop_StandarCase() {
 		
@@ -123,6 +153,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the stack's top operation with a limit case.
+	 */
 	@Test
 	public void testTop_LimitCase() {
 		
@@ -145,6 +178,9 @@ class StackClassTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the stack's is empty operation with a standard case.
+	 */
 	@Test
 	public void testIsEmpty() {
 		

@@ -7,18 +7,30 @@ class HashTableTest {
 
 //________________________________________________ATTRIBUTES________________________________________________________________
 
+	/**
+	 * The hash table that is to be tested.
+	 */
 	private HashTable<Integer, String> hashTable;
 	
 //________________________________________________STAGES________________________________________________________________
 
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage1() {
 		
 	}
 	
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage2() {
 		hashTable = new HashTable<Integer, String>();
 	}
 	
+	/**
+	 * This function initializes a new test scenario.
+	 */
 	private void stage3() {
 		
 		hashTable = new HashTable<Integer, String>();
@@ -30,6 +42,9 @@ class HashTableTest {
 	
 //________________________________________________TEST METHODS________________________________________________________________
 	
+	/**
+	 * This function tests the hash table constructor.
+	 */
 	@Test
 	public void testHashTable() {
 		
@@ -42,6 +57,9 @@ class HashTableTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the hash table adding operation with a standard case.
+	 */
 	@Test
 	public void testAdd_StandarCase() {
 		
@@ -55,6 +73,9 @@ class HashTableTest {
 	
 //________________________________________________________________________________________________________________
 
+	/**
+	 * This function tests the hash table adding operation with a limit case.
+	 */
 	@Test
 	public void testAdd_LimitCase() {
 		
@@ -72,7 +93,9 @@ class HashTableTest {
 
 //________________________________________________________________________________________________________________
 
-
+	/**
+	 * This function tests the hash table get operation with a standard case.
+	 */
 	@Test
 	public void testGet_StandarCase() {
 		
@@ -86,6 +109,9 @@ class HashTableTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the hash table get operation with a limit case.
+	 */
 	@Test
 	public void testGet_LimitCase() { //problems
 		
@@ -107,6 +133,9 @@ class HashTableTest {
 	
 //________________________________________________________________________________________________________________
 	
+	/**
+	 * This function tests the hash table contains key operation with a standard case.
+	 */
 	@Test
 	public void testContainsKey_StandarCase() {
 		
