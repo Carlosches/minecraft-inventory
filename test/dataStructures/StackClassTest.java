@@ -67,7 +67,7 @@ class StackClassTest {
 		
 		boolean pushed = true;
 		
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 100000; i++) {
 			stack.push(i);
 			
 			if (stack.top() != i) {
@@ -118,6 +118,28 @@ class StackClassTest {
 		stage3();
 		
 		assertTrue("The top element is not the correct one", stack.top() == 99999);
+		
+	}
+	
+//________________________________________________________________________________________________________________
+
+	@Test
+	public void testTop_LimitCase() {
+		
+		stage3();
+		
+		boolean correctTop = true;
+		
+		for (int i = 99998; i >= 0 && correctTop; i--) {
+			
+			stack.pop();
+			if (stack.top() != i) {
+				correctTop = false;
+			}
+			
+		}
+		
+		assertTrue("The top is not the expected element", correctTop);
 		
 	}
 	

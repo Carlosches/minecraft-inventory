@@ -71,7 +71,8 @@ class HashTableTest {
 	}
 
 //________________________________________________________________________________________________________________
-	
+
+
 	@Test
 	public void testGet_StandarCase() {
 		
@@ -116,27 +117,6 @@ class HashTableTest {
 		assertTrue("the key in the table was not found", found);
 		
 	}
-	
-//________________________________________________________________________________________________________________
-	/*
-	@Test
-	public void testContainsKey_LimitCase() {
-		
-		stage3();
-		
-		boolean found = true;
-		
-		for (int i = 0; i < 100; i++) {
-			
-			if (!hashTable.containsKey(i)) {
-				found = false;
-			}
-			
-		}
-		
-		assertTrue("the key in the table was not found", found);
-		
-	}*/
 	
 //________________________________________________________________________________________________________________
 	
